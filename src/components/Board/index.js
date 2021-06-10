@@ -8,10 +8,15 @@ function Board({list}) {
 
   return (
     <Container>
-      {list.map(item => <List data={item}/>)}
+      {list.map(item => 
+        <List 
+          key= {item.title}
+          data={item}
+        />)
+      }
       
     </Container>
   )
 }
 
-export {Board};
+export {Board}; 

@@ -9,18 +9,17 @@ function Header({ openModal }) {
       <img 
         src={logoImg}
         alt="Logo" 
-        height={75}
-      
+        height={75}   
       />
 
       <button
-            type="button"
-            
-          >
-            <div className="text">Novo Pedido</div>
-            <div className="icon">
-              <FiPlusSquare size={24} />
-            </div>
+        type="button"
+        onClick={openModal}
+      >
+        <div className="text">Novo Pedido</div>
+        <div className="icon">
+          <FiPlusSquare size={24} />
+        </div>
       </button>
     </Container>
   )
