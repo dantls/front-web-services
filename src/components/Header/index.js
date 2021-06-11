@@ -12,15 +12,14 @@ function Header({ openModal }) {
         height={75}   
       />
 
-      <button
-        type="button"
-        onClick={openModal}
-      >
+      <button type="button"
+      onClick={openModal}>
         <div className="text">Novo Pedido</div>
         <div className="icon">
           <FiPlusSquare size={24} />
         </div>
       </button>
+   
     </Container>
   )
 }

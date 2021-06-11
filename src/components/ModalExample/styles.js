@@ -17,6 +17,7 @@ export const Container = styled.form`
     padding: 0 1.5rem;
     height: 4rem;
     border-radius: 0.25rem;
+    margin-bottom: 2rem;
 
     border: 1px solid var(--input-border);
     background-color: var(--input-color);
@@ -85,7 +86,6 @@ export const RadioBox = styled.button`
       margin-left: 1rem;
       font-size: 1rem;
       color: var(--text-title);
-
     }
 
 

@@ -1,52 +1,22 @@
 import Modal from 'react-modal';
-import {useState, useEffect} from 'react';
 
 import {Container} from './styles';
 
 import closeImg from '../../assets/close.svg'
-// import { api } from '../../services/api';
 import { useHistory } from 'react-router';
 Modal.setAppElement('#root');
 export function NewServiceModal({isOpen,onRequestClose }){
 
   const history = useHistory();
   
-  // const [devices ,setDevices] = useState([]);
-  // const [choiseDevice ,setChoiseDevice] = useState('');
-  // const [batteries ,setBatteries] = useState([]);
-  // const [choiseBattery ,setChoiseBattery] = useState('');
-
-
   async function handleCreateNewService(event){
-    event.preventDefault();
-    // await api.post('/services',{
-    //   "device_id": choiseDevice,
-    //   "battery_id": choiseBattery,
-    // });
+       event.preventDefault();
+       
 
     history.push('/services');
     onRequestClose()
   }
 
-  // useEffect(()=>{
-  //   async function loadDevices(){
-  //     const response = await api.get('/devices');
-  //      setDevices(response.data);
-  //   }
-    
-  //   async function loadBatteries(){
-  //     const response = await api.get('/batteries');
-  //      setBatteries(response.data);
-  //   }
-    
-  //   loadDevices();
-  //   loadBatteries();
-  //   setChoiseDevice('');
-  //   setChoiseBattery('');
-    
-  // },[isOpen]);
-
-  
   return(
     <Modal
       isOpen={isOpen}
@@ -66,66 +36,24 @@ export function NewServiceModal({isOpen,onRequestClose }){
 
       </button>
 
-      <Container onSubmit={()=>{}}>
+      <Container onSubmit={handleCreateNewService}>
         <h2>Cadastrar</h2>
+      
+        <label htmlFor="modelo">Pedido* </label>
+        <input
+          placeholder="Pedido"
+          id="order"
+        />
 
-        {/* <h2>Cadastrar</h2>
-      handleCreateNewService
-        <label htmlFor="modelo">Equipamento* </label>
-        <select 
-              value={choiseDevice}
-              onChange={event => {
-                setChoiseDevice(event.target.value)
-                // models(event.target.value)
-              }
-              }>
-              <option
-                value=''
-                disabled
-                hidden
-              >
-                Selecione o dispositivo:
-              </option>
-              {devices.map((item)=>{
-                return (
-                 <option 
-                 key={item.id}
-                 value={item.id}>
-                   {`${item.code} - ${item.types.name} - ${item.modelos.name}`}
-                </option>
-                )
-              })}
-          </select>
-
-            <label htmlFor="modelo">Bateria* </label>
-            <select 
-              value={choiseBattery}
-              onChange={event => {
-                setChoiseBattery(event.target.value)
-                // models(event.target.value)
-              }
-              }>
-              <option
-                value=''
-                disabled
-                hidden
-              >
-                Selecione a bateria:
-              </option>
-              {batteries.map((item)=>{
-                return (
-                 <option 
-                 key={item.id}
-                 value={item.id}>
-                   {`${item.code} - ${item.types.name} - ${item.modelos.name}`}
-                </option>
-                )
-              })}
-            </select>
+        <label htmlFor="modelo">Endereço* </label>
+        <input
+          placeholder="Endereço"
+          id="address"
+        />
 
         <button type="submit">
           Cadastrar
-        </button> */}
+        </button>
 
       </Container>
     </Modal>
