@@ -10,7 +10,7 @@ export function NewServiceModal({isOpen,onRequestClose }){
   const history = useHistory();
   
   async function handleCreateNewService(event){
-       event.preventDefault();
+    event.preventDefault();
        
 
     history.push('/services');

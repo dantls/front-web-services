@@ -5,7 +5,7 @@ import GlobalStyle from './styles/global';
 import Dashboard from './pages/Dashboard';
 import { Header } from './components/Header';
 import {  NewServiceModal  } from './components/NewServiceModal';
-import { ServicesProvider } from './ServicesContext';
+import { ServicesProvider } from './hooks/useServices';
 
 function App() {
   const [isNewServiceModalOpen, setIsNewServiceModalOpen] = useState(false);

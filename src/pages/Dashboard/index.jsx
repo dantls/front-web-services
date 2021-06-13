@@ -1,12 +1,8 @@
-
 import { Board } from '../../components/Board';
-import { useContext }from 'react';
-import { ServicesContext } from '../../ServicesContext';
-
-
+import { useServices } from '../../hooks/useServices';
 
 function Dashboard() {
-  const list = useContext(ServicesContext);
+  const list = useServices();
   
   return (
     <>
