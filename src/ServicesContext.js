@@ -18,7 +18,6 @@ export function ServicesProvider({children}){
 
       setAddresses(responseAddresses.data)
       setList(responseServices.data )
-
       
     })()
 
