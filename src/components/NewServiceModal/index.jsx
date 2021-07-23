@@ -1,19 +1,50 @@
 import Modal from 'react-modal';
+import {useState, useEffect} from 'react';
 
 import {Container} from './styles';
 
-import closeImg from '../../assets/close.svg'
-import { useHistory } from 'react-router';
+import { useContext }from 'react';
+import { ServicesContext } from '../../ServicesContext';
+
+import closeImg from '../../assets/close.svg';
+import api from '../../services/api';
+
 Modal.setAppElement('#root');
 export function NewServiceModal({isOpen,onRequestClose }){
+  const {setList} = useContext(ServicesContext);
 
-  const history = useHistory();
-  
+  const [order ,setOrder] = useState('');
+  const [addresses ,setAddress] = useState([]);
+  const [choiseAddress ,setChoiseAddress] = useState('');
+
+  useEffect(()=>{
+    async function loadAddresses(){
+      const response = await api.get('/list-addresses');
+      setAddress(response.data);
+    }
+    
+    loadAddresses();
+    setChoiseAddress('');
+    setOrder('');
+    
+
+  },[isOpen]);
+
+  async function loadServices(){
+    const response = await api.get('/list-services');
+    setList(response.data);
+  }
   async function handleCreateNewService(event){
-       event.preventDefault();
-       
+    event.preventDefault();
 
-    history.push('/services');
+    await api.post('/services',{
+      "address": choiseAddress,
+      order
+    });
+
+
+    loadServices();
+
     onRequestClose()
   }
 
@@ -39,17 +70,44 @@ export function NewServiceModal({isOpen,onRequestClose }){
       <Container onSubmit={handleCreateNewService}>
         <h2>Cadastrar</h2>
       
-        <label htmlFor="modelo">Pedido* </label>
-        <input
-          placeholder="Pedido"
-          id="order"
-        />
-
         <label htmlFor="modelo">Endereço* </label>
-        <input
-          placeholder="Endereço"
-          id="address"
-        />
+        <select 
+          value={choiseAddress}
+          onChange={event => {
+            setChoiseAddress(event.target.value)
+          }
+          }>
+          <option
+            value=''
+            disabled
+            hidden
+          >
+            Selecione o endereço:
+          </option>
+          {addresses.map((item)=>{
+            return (
+              <option 
+              key={item.id}
+              value={item.description}>
+                {item.description}
+               </option>
+            )
+          })}
+        </select>
+
+        <label htmlFor="modelo">Pedido* </label>
+        
+        <input 
+          type="text" 
+          id="order" 
+          placeholder="Pedido"
+          value={order}
+          onChange={event => {
+              setOrder(event.target.value)
+            }
+          }
+        />    
+
 
         <button type="submit">
           Cadastrar

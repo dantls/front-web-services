@@ -1,11 +1,10 @@
 import React,{useState} from 'react';
 
 import GlobalStyle from './styles/global';
-// import Home from './pages/Home';
-import Dashboard from './pages/Dashboard';
 import { Header } from './components/Header';
-import {  NewServiceModal  } from './components/NewServiceModal';
+import { NewServiceModal } from './components/NewServiceModal';
 import { ServicesProvider } from './ServicesContext';
+import Routes from './routes';
 
 function App() {
   const [isNewServiceModalOpen, setIsNewServiceModalOpen] = useState(false);
@@ -20,13 +19,13 @@ function App() {
   return (
     <ServicesProvider>
       <Header openModal={handleOpenNewServiceModal}  />
-      <Dashboard />
 
       <GlobalStyle />
       <NewServiceModal 
         isOpen={isNewServiceModalOpen}
         onRequestClose={handleCloseNewServiceModal}
       />
+      <Routes />
     </ServicesProvider>
   );
 }

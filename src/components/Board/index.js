@@ -4,15 +4,18 @@ import { List } from '../List';
 import { Container } from './styles';
 
 
-function Board({list}) {
+function Board({addresses}) {
 
   return (
     <Container>
-      {list.map(item => 
+      {addresses.map(item => 
+        
         <List 
-          key= {item.title}
+          key= {item.description}
           data={item}
-        />)
+
+        />
+        )
       }
       
     </Container>

@@ -3,16 +3,15 @@ import { Board } from '../../components/Board';
 import { useContext }from 'react';
 import { ServicesContext } from '../../ServicesContext';
 
-
-
-function Dashboard() {
-  const list = useContext(ServicesContext);
+export function Dashboard() {
+  const {addresses} = useContext(ServicesContext);
   
   return (
     <>
-      <Board list={list}/>
+      <Board
+        addresses={addresses}
+      />
     </>
   );
 }
 
-export default Dashboard;
