@@ -1,7 +1,7 @@
-import {createContext, useEffect, useState} from 'react';
-import api from './services/api';
+import {createContext, useEffect, useState, useContext} from 'react';
+import api from '../services/api';
 
-export const ServicesContext = createContext([]);
+const ServicesContext = createContext([]);
 
 export function ServicesProvider({children}){
   const [list, setList] = useState([]);
@@ -17,7 +17,7 @@ export function ServicesProvider({children}){
       ])
 
       setAddresses(responseAddresses.data)
-      setList(responseServices.data )
+      setList(responseServices.data)
       
     })()
 
@@ -30,3 +30,8 @@ export function ServicesProvider({children}){
   )
 } 
 
+export function useServices(){
+  const context = useContext(ServicesContext);
+
+  return context;
+}

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+export const Container = styled.button`
  position: relative;
  background: #FFF;
  border-radius: 0.5rem;
@@ -8,7 +8,11 @@ export const Container = styled.div`
  padding: 1.25rem;
  box-shadow: 0 1px 4px 0 rgba(192,208,230, 0.8);
  border-top: 1rem solid rgba(230,236,245,0.4);
+ border-right: 0;
+ border-bottom: 0;
+ border-left: 0;
  cursor: grab;
+ 
  text-align: center;
 
  header{
@@ -20,7 +24,9 @@ export const Container = styled.div`
   font-weight: 500;
   line-height: 1rem;
  }
-
+ &:hover{
+   filter: brightness(0.9)
+ }
 `;
 export const Label = styled.div`
  width: 0.6rem;

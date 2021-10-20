@@ -3,11 +3,15 @@ import React,{useState} from 'react';
 import GlobalStyle from './styles/global';
 import { Header } from './components/Header';
 import { NewServiceModal } from './components/NewServiceModal';
-import { ServicesProvider } from './ServicesContext';
+import { ChangeStatusModal } from './components/ChangeStatusModal';
 import Routes from './routes';
 
+
+import { useChangeStatusModal } from './hooks/useChangeStatusModal';
 function App() {
   const [isNewServiceModalOpen, setIsNewServiceModalOpen] = useState(false);
+
+  const {isChangeStatusModalOpen,handleCloseChangeStatusModal} = useChangeStatusModal();
 
   function handleOpenNewServiceModal(){
     setIsNewServiceModalOpen(true);
@@ -17,7 +21,7 @@ function App() {
   }
 
   return (
-    <ServicesProvider>
+    <>
       <Header openModal={handleOpenNewServiceModal}  />
 
       <GlobalStyle />
@@ -25,8 +29,12 @@ function App() {
         isOpen={isNewServiceModalOpen}
         onRequestClose={handleCloseNewServiceModal}
       />
+      <ChangeStatusModal 
+        isOpen={isChangeStatusModalOpen}
+        onRequestClose={handleCloseChangeStatusModal}
+      />
       <Routes />
-    </ServicesProvider>
+    </>
   );
 }
 

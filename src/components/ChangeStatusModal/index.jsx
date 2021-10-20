@@ -2,13 +2,13 @@ import Modal from 'react-modal';
 import {useState, useEffect} from 'react';
 
 import {Container} from './styles';
-import {  useServices } from '../../hooks/useServices';
 
 import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
+import { useServices } from '../../hooks/useServices';
 
 Modal.setAppElement('#root');
-export function NewServiceModal({isOpen,onRequestClose }){
+export function ChangeStatusModal({isOpen,onRequestClose }){
   const {setList} = useServices();
 
   const [order ,setOrder] = useState('');

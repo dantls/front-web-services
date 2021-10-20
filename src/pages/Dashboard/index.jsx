@@ -1,9 +1,8 @@
 import { Board } from '../../components/Board';
-import { useContext }from 'react';
-import { ServicesContext } from '../../ServicesContext';
+import { useServices } from '../../hooks/useServices';
 
 export function Dashboard() {
-  const {addresses} = useContext(ServicesContext);
+  const {addresses} = useServices();
   
   return (
     <>

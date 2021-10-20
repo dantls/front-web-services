@@ -2,12 +2,10 @@ import React from 'react';
 import { Card } from '../Card';
 
 import { Container } from './styles';
-
-import { useContext }from 'react';
-import { ServicesContext } from '../../ServicesContext';
+import { useServices } from '../../hooks/useServices';
 
 function List({data}) {
-  const {list} = useContext(ServicesContext);
+  const {list} = useServices();
 
 
   const filteredCards = list.filter(item =>{

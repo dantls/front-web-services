@@ -1,14 +1,16 @@
 import React from 'react';
-import ModalAdd from '../ModalAdd';
+import { useChangeStatusModal } from '../../hooks/useChangeStatusModal';
 
 import { Container, Label } from './styles';
 
 function Card({data}) {
 
+  const {handleOpenChangeStatusModal} = useChangeStatusModal();
+  
   return (
-    <Container onClick={()=>{
-      <ModalAdd />
-    }} >
+    <Container onClick={
+      handleOpenChangeStatusModal
+    } >
       <header>
         <Label color={data.label} /> 
       </header>
