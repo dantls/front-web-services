@@ -1,50 +1,24 @@
 import Modal from 'react-modal';
-import {useState, useEffect} from 'react';
-
+import { useEffect, useState } from 'react';
 import {Container} from './styles';
-
+import { useDataStore } from '../../services/stores/dataStores'
 import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
-import { useServices } from '../../hooks/useServices';
 
 Modal.setAppElement('#root');
 export function ChangeStatusModal({isOpen,onRequestClose }){
-  const {setList} = useServices();
+  const { selectedData } = useDataStore()
 
-  const [order ,setOrder] = useState('');
-  const [addresses ,setAddress] = useState([]);
-  const [choiseAddress ,setChoiseAddress] = useState('');
+  const [situations, setSituations] = useState([]);
+  const [choiseSituation ,setChoiseSituation] = useState('');
 
   useEffect(()=>{
-    async function loadAddresses(){
-      const response = await api.get('/list-addresses');
-      setAddress(response.data);
+    async function loadStatus(){
+      const response = await api.get('/situations');
+      setSituations(response.data);
     }
-    
-    loadAddresses();
-    setChoiseAddress('');
-    setOrder('');
-    
-
-  },[isOpen]);
-
-  async function loadServices(){
-    const response = await api.get('/list-services');
-    setList(response.data);
-  }
-  async function handleCreateNewService(event){
-    event.preventDefault();
-
-    await api.post('/services',{
-      "address": choiseAddress,
-      order
-    });
-
-
-    loadServices();
-
-    onRequestClose()
-  }
+    loadStatus();
+  },[]);
 
   return(
     <Modal
@@ -65,14 +39,19 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
 
       </button>
 
-      <Container onSubmit={handleCreateNewService}>
-        <h2>Cadastrar</h2>
+      <Container >
+        <h2>Alterar Status</h2>
       
-        <label htmlFor="modelo">Endereço* </label>
+        <label htmlFor="modelo">Pedido</label>
+        
+        <h1>{selectedData?.content}</h1>
+
+
+        <label htmlFor="modelo">Status </label>
         <select 
-          value={choiseAddress}
+          value={choiseSituation}
           onChange={event => {
-            setChoiseAddress(event.target.value)
+            setChoiseSituation(event.target.value)
           }
           }>
           <option
@@ -80,9 +59,9 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
             disabled
             hidden
           >
-            Selecione o endereço:
+            Selecione o situação:
           </option>
-          {addresses.map((item)=>{
+          {situations.map((item)=>{
             return (
               <option 
               key={item.id}
@@ -93,20 +72,7 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
           })}
         </select>
 
-        <label htmlFor="modelo">Pedido* </label>
-        
-        <input 
-          type="text" 
-          id="order" 
-          placeholder="Pedido"
-          value={order}
-          onChange={event => {
-              setOrder(event.target.value)
-            }
-          }
-        />    
-
-
+     
         <button type="submit">
           Cadastrar
         </button>

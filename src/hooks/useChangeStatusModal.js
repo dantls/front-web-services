@@ -1,11 +1,11 @@
 import {createContext, useState,useContext} from 'react';
 
-
+import { useDataStore } from '../services/stores/dataStores';
 const ChangeStatusModalContext = createContext({});
 
 
 export function ChangeStatusModalProvider(props) {
-  
+  const { setSelectedData } = useDataStore();
 
   const [isChangeStatusModalOpen, setIsChangeStatusModalOpen] = useState(false);
 
@@ -13,6 +13,7 @@ export function ChangeStatusModalProvider(props) {
     setIsChangeStatusModalOpen(true);
   }
   function handleCloseChangeStatusModal(){
+    setSelectedData(null)
     setIsChangeStatusModalOpen(false);
   }
 
