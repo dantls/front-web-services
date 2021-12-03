@@ -20,6 +20,27 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
     loadStatus();
   },[]);
 
+  async function handleChangeStatus(event){
+    event.preventDefault();
+
+
+    if(choiseSituation === "Faturado")
+    await api.post('/billed',{
+      "order": selectedData.content
+    });
+
+    
+    if(choiseSituation === "Finalizado")
+    await api.post('/finalized',{
+      "order": selectedData.content
+    });
+
+
+    onRequestClose()
+  }
+
+  
+
   return(
     <Modal
       isOpen={isOpen}
@@ -73,7 +94,10 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
         </select>
 
      
-        <button type="submit">
+        <button 
+          type="submit" 
+          onClick={handleChangeStatus}
+        >
           Cadastrar
         </button>
 

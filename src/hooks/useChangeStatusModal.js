@@ -1,11 +1,19 @@
 import {createContext, useState,useContext} from 'react';
-
+import api from '../services/api';
 import { useDataStore } from '../services/stores/dataStores';
+import {  useServices } from './useServices';
 const ChangeStatusModalContext = createContext({});
-
 
 export function ChangeStatusModalProvider(props) {
   const { setSelectedData } = useDataStore();
+
+  const {setList} = useServices();
+
+  async function loadServices(){
+    const response = await api.get('/list-services');
+    setList(response.data);
+  }
+  
 
   const [isChangeStatusModalOpen, setIsChangeStatusModalOpen] = useState(false);
 
@@ -15,6 +23,7 @@ export function ChangeStatusModalProvider(props) {
   function handleCloseChangeStatusModal(){
     setSelectedData(null)
     setIsChangeStatusModalOpen(false);
+    loadServices();
   }
 
   return (

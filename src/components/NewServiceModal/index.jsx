@@ -32,6 +32,7 @@ export function NewServiceModal({isOpen,onRequestClose }){
     const response = await api.get('/list-services');
     setList(response.data);
   }
+  
   async function handleCreateNewService(event){
     event.preventDefault();
 
