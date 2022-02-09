@@ -2,13 +2,19 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   height: 5.5rem;
+  width: 100%;
   padding: 0 3rem;
   background: #FFFFFF;
   color: #fff;
+  
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @media(max-width: 700px) {
+    width: 100%;
+  }
 
   button {
           cursor: pointer;
