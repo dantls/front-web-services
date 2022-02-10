@@ -28,7 +28,7 @@ export default createGlobalStyle`
   }
   
   html, body, #root{
-    height: 115vh;
+    height: calc(100vh - 5.5rem);
     width: 100vw;
   }
 

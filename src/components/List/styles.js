@@ -7,11 +7,10 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       align-items: center;
-      height: 100vh - 100px;
       margin-bottom: 1rem;
   }
-  /* height: 100vh - 5px; */
   margin-bottom: 1rem;
+
   & + div {
     border-left: 1px solid rgba(0,0,0,0.05);
   }
@@ -20,13 +19,12 @@ export const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-     justify-content: center;
+    justify-content: center;
 
     ul {
       display: flex;
       flex-direction: column;
       align-items: center;
-      /* height: 100vh - 2100px; */
       margin-bottom: 1rem;
     }
 
