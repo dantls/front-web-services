@@ -75,14 +75,15 @@ export const Container = styled.form`
 export const TransactionTypeContainer = styled.div`
   margin: 0.5rem 0;
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 0.5rem; 
 `;
 
 
 const colors = {
   green: '#33CC95',
-  red: '#E52E4D'
+  red: '#E52E4D',
+  yellow: 'yellow'
 }
 
 export const RadioBox = styled.button`

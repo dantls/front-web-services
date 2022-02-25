@@ -13,6 +13,10 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
 
   const [situations, setSituations] = useState([]);
   const [choiceSituation ,setChoiceSituation] = useState('');
+
+  const [orderTypes, setOrderTypes] = useState([]);
+  const [choiceOrderTypes ,setChoiceOrderTypes] = useState('');
+
   const [addresses ,setAddress] = useState([]);
   const [choiceAddress ,setChoiceAddress] = useState('');
 
@@ -24,7 +28,16 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
       setSituations(response.data);
     }
     loadStatus();
-  },[]);
+    setChoiceSituation('');
+  },[isOpen]);
+
+  useEffect(()=>{
+    async function loadOrderTypes(){
+      const response = await api.get('/ordertypes');
+      setOrderTypes(response.data);
+    }
+    loadOrderTypes();
+  },[isOpen]);
 
   
 
@@ -44,17 +57,19 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
   async function handleChangeStatus(event){
     event.preventDefault();
 
+    if(choiceSituation === "Faturado" ||  choiceSituation === "Finalizado"){
+      if(choiceSituation === "Faturado")
+      await api.post('/billed',{
+        "order": selectedData.content
+      });
 
-    if(choiceSituation === "Faturado")
-    await api.post('/billed',{
-      "order": selectedData.content
-    });
-
+      
+      if(choiceSituation === "Finalizado")
+      await api.post('/finalized',{
+        "order": selectedData.content
+      });
+    }
     
-    if(choiceSituation === "Finalizado")
-    await api.post('/finalized',{
-      "order": selectedData.content
-    });
 
 
     onRequestClose()
@@ -63,14 +78,10 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
   async function handleChangeAddress(event){
     event.preventDefault();
 
-    console.log(choiceAddress)
-    console.log(selectedData.content)
-
     await api.post('/transfer',{
       "order": selectedData.content,
       "address": choiceAddress
     });
-
 
     onRequestClose()
   }
@@ -116,6 +127,16 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
             <span>Edição</span>
           </RadioBox>
           <RadioBox
+            type="button"
+            isActive={type === 'type'}
+            activeColor="yellow"
+            onClick={()=> {setType('type')}}
+            //className={type==='deposit'? 'active' : ''}
+          > 
+            <img src={incomeImg} alt="Tipo de Pedido"/>
+            <span>Tipo</span>
+          </RadioBox>
+          <RadioBox
             isActive={type === 'change'}
             type="button"
             activeColor="red"
@@ -156,6 +177,7 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
               })}
             </select>
 
+
             <button 
               type="submit" 
               onClick={handleChangeStatus}
@@ -164,6 +186,7 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
             </button>
           </>)
           :
+          (type === 'change')? 
           (<>
                 <label htmlFor="modelo">Endereço* </label>
                 <select 
@@ -195,7 +218,43 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
               >
                 Alterar
               </button>
-          </>)
+          </>):
+          (
+            <>
+          
+            <label htmlFor="modelo">Tipo </label>
+            <select 
+              value={choiceOrderTypes}
+              onChange={event => {
+                setChoiceOrderTypes(event.target.value)
+              }
+              }>
+              <option
+                value=''
+                disabled
+                hidden
+              >
+                Selecione o tipo de pedido:
+              </option>
+              {orderTypes.map((item)=>{
+                return (
+                  <option 
+                  key={item.id}
+                  value={item.description}>
+                    {item.description}
+                  </option>
+                )
+              })}
+            </select>
+
+            <button 
+              type="submit" 
+              onClick={handleChangeStatus}
+            >
+              Salvar
+            </button>
+          </>
+          )
 
         }
       </Container>
