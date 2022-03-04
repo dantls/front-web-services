@@ -57,7 +57,7 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
   async function handleChangeStatus(event){
     event.preventDefault();
 
-    if(choiceSituation === "Faturado" ||  choiceSituation === "Finalizado"){
+    if(choiceSituation === "Faturado" ||  choiceSituation === "Finalizado" || choiceSituation === 'Pendência Comercial/Vendas/Financeiro' ){
       if(choiceSituation === "Faturado")
       await api.post('/billed',{
         "order": selectedData.content
@@ -68,6 +68,13 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
       await api.post('/finalized',{
         "order": selectedData.content
       });
+
+      if(choiceSituation === "Pendência Comercial/Vendas/Financeiro")
+      await api.post('/pendency',{
+        "order": selectedData.content
+      });
+
+      
     }
     
 
@@ -82,6 +89,18 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
       "order": selectedData.content,
       "address": choiceAddress
     });
+
+    onRequestClose()
+  }
+  async function handleChangeTypeOrder(event){
+    event.preventDefault();
+
+    await api.put('/add-ordertype',{
+      "order": selectedData.content,
+      "ordertype": choiceOrderTypes
+    });
+
+    setChoiceOrderTypes('');
 
     onRequestClose()
   }
@@ -249,7 +268,7 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
 
             <button 
               type="submit" 
-              onClick={handleChangeStatus}
+              onClick={handleChangeTypeOrder}
             >
               Salvar
             </button>

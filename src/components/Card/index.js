@@ -19,6 +19,7 @@ function Card({data}) {
         <Label color={data.label} /> 
       </header>
       <p>{data.content}</p>
+      <p>{data.order_type}</p>
     </Container>
   )
 }
