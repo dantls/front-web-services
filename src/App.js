@@ -4,8 +4,9 @@ import GlobalStyle from './styles/global';
 import { Header } from './components/Header';
 import { NewServiceModal } from './components/NewServiceModal';
 import { ChangeStatusModal } from './components/ChangeStatusModal';
-import Routes from './routes';
-
+// import Routes from './routes';
+import Routes from './routes'
+import { BrowserRouter } from 'react-router-dom';
 
 import { useChangeStatusModal } from './hooks/useChangeStatusModal';
 function App() {
@@ -21,7 +22,7 @@ function App() {
   }
 
   return (
-    <>
+    <BrowserRouter>
       <Header openModal={handleOpenNewServiceModal}  />
 
       <GlobalStyle />
@@ -34,7 +35,7 @@ function App() {
         onRequestClose={handleCloseChangeStatusModal}
       />
       <Routes />
-    </>
+    </BrowserRouter>
   );
 }
 
