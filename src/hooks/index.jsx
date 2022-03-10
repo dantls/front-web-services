@@ -3,15 +3,17 @@ import React from 'react';
 import { ChangeStatusModalProvider } from './useChangeStatusModal';
 import { ServicesProvider } from './useServices';
 import { AuthProvider } from './auth/';
-
+import { ToastProvider } from './toast/';
 
 const AppProvider = ({ children }) => (
   <AuthProvider>
-    <ServicesProvider>
-      <ChangeStatusModalProvider>
-        {children}
-      </ChangeStatusModalProvider>
-    </ServicesProvider>
+    <ToastProvider>
+      <ServicesProvider>
+        <ChangeStatusModalProvider>
+          {children}
+        </ChangeStatusModalProvider>
+      </ServicesProvider>
+    </ToastProvider>
   </AuthProvider>
 );
 export default AppProvider;
