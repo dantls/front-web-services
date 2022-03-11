@@ -21,6 +21,7 @@ export function ServicesProvider({children}){
       
     })()
 
+
   },[])
  
   return(
@@ -32,6 +33,6 @@ export function ServicesProvider({children}){
 
 export function useServices(){
   const context = useContext(ServicesContext);
-
+  
   return context;
 }

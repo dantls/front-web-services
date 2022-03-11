@@ -1,7 +1,7 @@
 import React from 'react';
 import Route from './Route';
 import {
-    Switch
+    Switch,
 } from 'react-router-dom';
 
 import {SignIn} from '../pages/SignIn';
