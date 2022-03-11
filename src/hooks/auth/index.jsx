@@ -6,8 +6,8 @@ const AuthContext = createContext();
 
 const AuthProvider = ({children}) => {
   const [data, setData] = useState(()=>{
-    const token = localStorage.getItem('@Batteries:token');
-    const user = localStorage.getItem('@Batteries:user');
+    const token = localStorage.getItem('@Shipping:token');
+    const user = localStorage.getItem('@Shipping:user');
 
     if(token && user){
       return {
@@ -27,14 +27,14 @@ const AuthProvider = ({children}) => {
 
     const {token, user} = response.data;
 
-    localStorage.setItem('@Batteries:token', token);
-    localStorage.setItem('@Batteries:user', JSON.stringify(user));
+    localStorage.setItem('@Shipping:token', token);
+    localStorage.setItem('@Shipping:user', JSON.stringify(user));
     
     setData({token , user})
   },[]);
   const signOut = useCallback(async ({email, password}) => {
-    localStorage.removeItem('@Batteries:token');
-    localStorage.removeItem('@Batteries:user');
+    localStorage.removeItem('@Shipping:token');
+    localStorage.removeItem('@Shipping:user');
 
     setData({})
   },[]);
