@@ -2,7 +2,7 @@ import Modal from 'react-modal';
 import {useState, useEffect} from 'react';
 
 import {Container} from './styles';
-import {  useServices } from '../../hooks/useServices';
+import {  useServices } from '../../hooks/services';
 
 import closeImg from '../../assets/close.svg';
 import api from '../../services/api';

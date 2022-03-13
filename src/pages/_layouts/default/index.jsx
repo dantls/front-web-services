@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import { ChangeStatusModal } from '../../../components/ChangeStatusModal';
 import { Header } from '../../../components/Header';
 import { NewServiceModal } from '../../../components/NewServiceModal';
-import { useChangeStatusModal } from '../../../hooks/useChangeStatusModal';
+import { useChangeStatusModal } from '../../../hooks/changeStatus';
 
 export default function DefaultLayout({ children }) {
   const [isNewServiceModalOpen, setIsNewServiceModalOpen] = useState(false);

@@ -1,5 +1,5 @@
 import { Board } from '../../components/Board';
-import { useServices } from '../../hooks/useServices';
+import { useServices } from '../../hooks/services';
 import {Container} from './styles';
 
 
