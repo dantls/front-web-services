@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ChangeStatusModalProvider } from './useChangeStatusModal';
-import { ServicesProvider } from './useServices';
+import { ChangeStatusModalProvider } from './changeStatus';
+import { ServicesProvider } from './services';
 import { AuthProvider } from './auth/';
 import { ToastProvider } from './toast/';
 

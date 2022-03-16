@@ -2,7 +2,7 @@ import React from 'react';
 import { Card } from '../Card';
 
 import { Container } from './styles';
-import { useServices } from '../../hooks/useServices';
+import { useServices } from '../../hooks/services';
 
 function List({data}) {
   const {list} = useServices();

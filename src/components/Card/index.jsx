@@ -1,5 +1,5 @@
 import React from 'react';
-import { useChangeStatusModal } from '../../hooks/useChangeStatusModal';
+import { useChangeStatusModal } from '../../hooks/changeStatus';
 import { useDataStore } from '../../services/stores/dataStores';
 import { Container, Label } from './styles';
 

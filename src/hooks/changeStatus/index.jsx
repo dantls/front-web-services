@@ -1,7 +1,8 @@
 import {createContext, useState,useContext} from 'react';
-import api from '../services/api';
-import { useDataStore } from '../services/stores/dataStores';
-import {  useServices } from './useServices';
+import api from '../../services/api';
+import { useDataStore } from '../../services/stores/dataStores';
+import { useServices } from '../services';
+
 const ChangeStatusModalContext = createContext({});
 
 export function ChangeStatusModalProvider(props) {
