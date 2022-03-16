@@ -42,7 +42,7 @@ export const SignIn = () => {
           password
         });
 
-        history.push('/batteries/dashboard');
+        history.push('/dashboard');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
 
