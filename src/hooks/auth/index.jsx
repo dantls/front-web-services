@@ -32,6 +32,8 @@ const AuthProvider = ({children}) => {
     
     setData({token , user})
   },[]);
+
+  
   const signOut = useCallback(async ({email, password}) => {
     localStorage.removeItem('@Shipping:token');
     localStorage.removeItem('@Shipping:user');

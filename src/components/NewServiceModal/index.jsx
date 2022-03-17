@@ -89,7 +89,7 @@ export function NewServiceModal({isOpen,onRequestClose }){
               key={item.id}
               value={item.description}>
                 {item.description}
-               </option>
+              </option>
             )
           })}
         </select>

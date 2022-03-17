@@ -7,7 +7,6 @@ const ChangeStatusModalContext = createContext({});
 
 export function ChangeStatusModalProvider(props) {
   const { setSelectedData } = useDataStore();
-
   const {setList} = useServices();
 
   async function loadServices(){
