@@ -1,11 +1,12 @@
 import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
-import {Container ,TransactionTypeContainer, RadioBox} from './styles';
+import {Container ,TransactionTypeContainer, RadioBox, OrderDetails} from './styles';
 import { useDataStore } from '../../services/stores/dataStores'
 import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
+import { CgMoreVertical} from 'react-icons/cg'
 
 Modal.setAppElement('#root');
 export function ChangeStatusModal({isOpen,onRequestClose }){
@@ -130,9 +131,15 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
         <h2>Alterar</h2>
       
         <label htmlFor="modelo">Pedido</label>
-        
-        <h1>{selectedData?.content}</h1>
-
+        <OrderDetails>
+          <h1>{selectedData?.content}</h1>
+          <button
+            type="button"
+            onClick={onRequestClose}
+          >
+            <CgMoreVertical />
+          </button>
+        </OrderDetails>
         <label htmlFor="modelo">Tipo da alteração </label>
         <TransactionTypeContainer>
           <RadioBox

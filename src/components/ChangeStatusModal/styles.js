@@ -55,6 +55,7 @@ export const Container = styled.form`
 
   h1 {
     margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 
 
@@ -85,6 +86,17 @@ const colors = {
   red: '#E52E4D',
   yellow: 'yellow'
 }
+
+export const OrderDetails = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  button {
+    border: 0;
+  }
+`;
+
 
 export const RadioBox = styled.button`
   height: 3rem;
