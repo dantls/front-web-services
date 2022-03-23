@@ -7,6 +7,7 @@ import api from '../../services/api';
 import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import { CgMoreVertical} from 'react-icons/cg'
+import { Link } from 'react-router-dom';
 
 Modal.setAppElement('#root');
 export function ChangeStatusModal({isOpen,onRequestClose }){
@@ -133,12 +134,13 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
         <label htmlFor="modelo">Pedido</label>
         <OrderDetails>
           <h1>{selectedData?.content}</h1>
-          <button
-            type="button"
-            onClick={onRequestClose}
-          >
-            <CgMoreVertical />
-          </button>
+        
+            <Link
+              key={selectedData?.content}
+              to={`/detail/${selectedData?.content}`}
+            >
+              <CgMoreVertical />
+            </Link>
         </OrderDetails>
         <label htmlFor="modelo">Tipo da alteração </label>
         <TransactionTypeContainer>
