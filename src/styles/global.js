@@ -53,6 +53,9 @@ export default createGlobalStyle`
     @media(max-width: 720px){
       font-size: 87.5%;
     }
+    @media(max-width: 520px){
+      font-size: 83.5%;
+    }
   }
 
   .react-modal-overlay{

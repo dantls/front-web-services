@@ -1,10 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  
+  overflow-x: auto;
+
   table{
     width: 100%;
     border-spacing: 0 0.5rem;
+   
 
     th{
       color: var(--text-body);
@@ -34,35 +36,6 @@ export const Container = styled.div`
       }
     }
   }
-  .delete{
-    font-size: 0.8rem;
-    color: #FFFFFF;
-    background-color: var(--red);
-    border: 0;
-    padding: 0.6rem;
-    border-radius: 0.25rem;
-    height:2.5rem;
-    margin-right: 0.2rem;
-    transition: filter 0.2s;
 
-    &:hover{
-      filter: brightness(0.9);
-    }
-  }
-  .edit{
-    font-size: 0.8rem;
-    color: #FFFFFF;
-    background-color: var(--green);
-    border: 0;
-    padding: 0.6rem;
-    border-radius: 0.25rem;
-    height:2.5rem;
-    margin-right: 0.2rem;
-    transition: filter 0.2s;
-
-    &:hover{
-      filter: brightness(0.9);
-    }
-  }
 
 `;

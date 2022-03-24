@@ -8,10 +8,13 @@ import incomeImg from '../../assets/income.svg';
 import outcomeImg from '../../assets/outcome.svg';
 import { CgMoreVertical} from 'react-icons/cg'
 import { Link } from 'react-router-dom';
+import { useAuth } from '../../hooks/auth';
 
 Modal.setAppElement('#root');
 export function ChangeStatusModal({isOpen,onRequestClose }){
   const { selectedData } = useDataStore()
+  const { user } = useAuth();
+
 
   const [situations, setSituations] = useState([]);
   const [choiceSituation ,setChoiceSituation] = useState('');
@@ -62,18 +65,21 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
     if(choiceSituation === "Faturado" ||  choiceSituation === "Finalizado" || choiceSituation === 'Pendência Comercial/Vendas/Financeiro' ){
       if(choiceSituation === "Faturado")
       await api.post('/billed',{
-        "order": selectedData.content
+        "order": selectedData.content,
+        "user": user.id
       });
 
       
       if(choiceSituation === "Finalizado")
       await api.post('/finalized',{
-        "order": selectedData.content
+        "order": selectedData.content,
+        "user": user.id
       });
 
       if(choiceSituation === "Pendência Comercial/Vendas/Financeiro")
       await api.post('/pendency',{
-        "order": selectedData.content
+        "order": selectedData.content,
+        "user": user.id
       });
 
       
@@ -137,6 +143,7 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
         
             <Link
               key={selectedData?.content}
+              onClick={onRequestClose}
               to={`/detail/${selectedData?.content}`}
             >
               <CgMoreVertical />

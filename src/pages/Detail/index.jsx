@@ -11,14 +11,13 @@ export function Detail() {
 
   const { params } = useRouteMatch();
   
-  console.log(params.id)
-
   useEffect(() => {
-    api.get(`/list-service/${params.id}`).then((response) => {
+    api.get(`/list-service/${params.order}`).then((response) => {
       setListService(response.data);
     });
 
-  },[params.id]);
+  },[params.order]);
+
 
   return (
     <Container>

@@ -6,10 +6,14 @@ import {  useServices } from '../../hooks/services';
 
 import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
+import { useAuth } from '../../hooks/auth';
 
 Modal.setAppElement('#root');
+
 export function NewServiceModal({isOpen,onRequestClose }){
   const {setList} = useServices();
+  const { user } = useAuth();
+
 
   const [order ,setOrder] = useState('');
   const [addresses ,setAddress] = useState([]);
@@ -38,7 +42,8 @@ export function NewServiceModal({isOpen,onRequestClose }){
 
     await api.post('/services',{
       "address": choiseAddress,
-      order
+      order,
+      user: user.id
     });
 
 
