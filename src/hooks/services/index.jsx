@@ -16,8 +16,8 @@ export function ServicesProvider({children}){
          api.get('/list-services')
       ])
 
-      setAddresses(responseAddresses.data)
-      setList(responseServices.data)
+      setAddresses(oldState => [...oldState, ...responseAddresses.data])
+      setList(oldState => [...oldState,...responseServices.data])
       
     })()
 
