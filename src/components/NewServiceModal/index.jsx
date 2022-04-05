@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react';
 
 import {Container} from './styles';
 import {  useServices } from '../../hooks/services';
+import { useHistory } from "react-router-dom";
 
 import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
@@ -13,7 +14,8 @@ Modal.setAppElement('#root');
 export function NewServiceModal({isOpen,onRequestClose }){
   const {setList} = useServices();
   const { user } = useAuth();
-
+  const history = useHistory();
+  const goDashboard = () => history.push('dashboard');
 
   const [order ,setOrder] = useState('');
   const [addresses ,setAddress] = useState([]);
@@ -50,6 +52,8 @@ export function NewServiceModal({isOpen,onRequestClose }){
     loadServices();
 
     onRequestClose()
+
+    goDashboard()
   }
 
   return(
