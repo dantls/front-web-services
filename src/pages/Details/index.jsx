@@ -1,31 +1,43 @@
 import { useState , useEffect} from 'react';
-import {Container} from './styles';
-import { useRouteMatch, Link } from 'react-router-dom';
+import {Container, Search, TableContainer, Header} from './styles';
 import { Table } from '../../components/Table';
-import { FiChevronLeft } from 'react-icons/fi';
 import api from '../../services/api';
+// import {  Link } from 'react-router-dom';
+// import { FiChevronLeft } from 'react-icons/fi';
 
 export function Details() {
 
   const [listService, setListService] = useState([]);
 
-  const { params } = useRouteMatch();
+  const [search, setSearch] = useState('');
   
   useEffect(() => {
-    api.get(`/list-service/${params.order}`).then((response) => {
+    api.get(`/list-service/${search}`).then((response) => {
       setListService(response.data);
     });
 
-  },[params.order]);
+  },[search]);
 
 
   return (
     <Container>
-      <Table services={listService} />
-      <Link to="/">
-          <FiChevronLeft size={16} />
-          Voltar
-      </Link>
+      <Header>
+        <Search 
+          type="search"
+          placeholder="Buscar"
+          value={search}
+          onChange={(event) => {setSearch(event.target.value)}}
+        />
+        {/* <Link to="/">
+              <FiChevronLeft size={16} />
+              Voltar
+        </Link> */}
+
+      </Header>
+      <TableContainer>
+        <Table services={listService} />
+        
+      </TableContainer>
     </Container>
   );
 }
