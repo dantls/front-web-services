@@ -1,50 +1,42 @@
 import React from 'react';
+// import { Link } from 'react-router-dom';
+import { useHistory } from "react-router-dom";
 
-import { Container,Title, TitleBold, ButtonsContainer, TotalConnections } from './styles';
-
-import studyIcon from '../../assets/images/icons/study.png';
-import giveClasses from '../../assets/images/icons/give-classes.png';
+import { Container, ButtonsContainer } from './styles';
+import { BiCustomize, BiDetail } from "react-icons/bi";
+// import studyIcon from '../../assets/images/icons/study.png';
+// import giveClasses from '../../assets/images/icons/give-classes.png';
 import Button from '../../components/Button';
-import heartIcon from '../../assets/images/icons/heart.png';
+// import heartIcon from '../../assets/images/icons/heart.png';
 
 
 const Main = () => {
-
-
+  const history = useHistory();
+  const goDashboard = () => history.push('dashboard');
+  const goDetail = () => history.push('details');
 
   return(
     <Container>
-
-      <Title>
-        Seja bem-vindo, {'\n'}
-        <TitleBold>
-          O que deseja fazer?
-        </TitleBold>
-      </Title>
-
       <ButtonsContainer>
         <Button
-          img={studyIcon}
-          color={'#9871f5'}
-          onPress={handleNavigateToStudyPages}
-        >
-          Estudar
+          color={'#1098F7'}
+          onClick={goDashboard}
+        > 
+          Dashboard
+          <BiCustomize />
         </Button>
         <Button
-          onPress={handleNavigateToGiveClassesPage}
-          img={giveClasses}
-          color={'#04d361'}
+          color={'#91C7B1'}
+          onClick={goDetail}
         >
-          Dar aulas
+          Detalhes
+          <BiDetail />
         </Button>
       </ButtonsContainer>
 
-      <TotalConnections>
-        Total {totalConnections} conexões já realizadas {' '}
-        <Image source={heartIcon}/>
-      </TotalConnections>
+    
     </Container>
   )
 }
 
-export default Main;
+export { Main };

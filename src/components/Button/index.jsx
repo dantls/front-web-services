@@ -5,7 +5,7 @@ const Button = ({children, color, img ,...rest}) => {
 
   return (
     <Container color={color} {...rest}>
-      <Image source={img} />
+      {/* <Image source={img} /> */}
       <ButtonText>
         {children}
       </ButtonText>

@@ -85,9 +85,6 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
 
       
     }
-    
-
-
     onRequestClose()
   }
 
