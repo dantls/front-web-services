@@ -83,6 +83,12 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
         "user": user.id
       });
 
+      if(choiceSituation === "Cancelado")
+      await api.post('/cancel',{
+        "order": selectedData.content,
+        "user": user.id
+      });
+
       
     }
     onRequestClose()
