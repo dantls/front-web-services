@@ -62,7 +62,11 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
   async function handleChangeStatus(event){
     event.preventDefault();
 
-    if(choiceSituation === "Faturado" ||  choiceSituation === "Finalizado" || choiceSituation === 'Pendência Comercial/Vendas/Financeiro' ){
+    if(choiceSituation === "Faturado" || 
+      choiceSituation === "Finalizado" || 
+      choiceSituation === "Pendência Comercial/Vendas/Financeiro" || 
+      choiceSituation === "Cancelado"
+    ){
       
       if(choiceSituation === "Faturado")
       await api.post('/billed',{
