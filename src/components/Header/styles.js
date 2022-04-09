@@ -16,6 +16,14 @@ export const Container = styled.div`
     width: 100%;
   }
 
+  
+
+
+`;
+export const ButtonGroup = styled.div`
+  display: flex;
+
+
   button {
           cursor: pointer;
           font-weight: 600;
@@ -39,7 +47,10 @@ export const Container = styled.div`
             border-radius: 0 8px 8px 0;
             margin: 0 auto;
           }
+          .icon-signout{
+            border-radius: 8px 8px 8px 8px;
+            padding: 16px 16px;
+            background: red;
+          }
     }
-
-
 `;
