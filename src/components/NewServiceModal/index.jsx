@@ -1,5 +1,7 @@
 import Modal from 'react-modal';
 import {useState, useEffect} from 'react';
+import * as Yup from 'yup';
+import { useToast } from '../../hooks/toast';
 
 import {Container} from './styles';
 import {  useServices } from '../../hooks/services';
@@ -14,6 +16,8 @@ Modal.setAppElement('#root');
 export function NewServiceModal({isOpen,onRequestClose }){
   const {setList} = useServices();
   const { user } = useAuth();
+  const { addToast } = useToast();
+
   const history = useHistory();
   const goDashboard = () => history.push('dashboard');
 
@@ -41,19 +45,49 @@ export function NewServiceModal({isOpen,onRequestClose }){
   
   async function handleCreateNewService(event){
     event.preventDefault();
+    try {
+        const schema = Yup.object().shape({
+          order: Yup.string()
+          .required('Campo obrigatório inválido.')
+          .min(6, "A senha deve ter pelo menos 6 caracteres")
+          .max(6,"A senha deve ter somente 6 caracteres"),
+        });
+        console.log(schema)
 
-    await api.post('/services',{
-      "address": choiseAddress,
-      order,
-      user: user.id
-    });
+        await schema.validate({order}, {
+          abortEarly: false,
+        });
 
+        await api.post('/services',{
+          "address": choiseAddress,
+          order,
+          user: user.id
+        });
 
-    loadServices();
+        
+        loadServices();
 
-    onRequestClose()
+        onRequestClose();
 
-    goDashboard()
+        goDashboard();
+
+      } catch (error) {
+        if (error instanceof Yup.ValidationError) {
+          onRequestClose();
+
+          addToast({
+            type: 'error',
+            title: 'Informações inválidas.',
+            description:
+              'Número do pedido deve conter 6 caracteres.',
+          });
+          
+         
+          return;
+        }
+
+      
+      }
   }
 
   return(

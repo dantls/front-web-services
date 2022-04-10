@@ -42,10 +42,9 @@ export const SignIn = () => {
           password
         });
 
-        history.push('/dashboard');
+        history.push('/main');
       } catch (error) {
         if (error instanceof Yup.ValidationError) {
-
           // const errors = getValidationErrors(error);
          
           return;
