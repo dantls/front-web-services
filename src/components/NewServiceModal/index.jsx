@@ -49,8 +49,8 @@ export function NewServiceModal({isOpen,onRequestClose }){
         const schema = Yup.object().shape({
           order: Yup.string()
           .required('Campo obrigatório inválido.')
-          .min(6, "A senha deve ter pelo menos 6 caracteres")
-          .max(6,"A senha deve ter somente 6 caracteres"),
+          .min(6, "O pedido deve ter pelo menos 6 caracteres")
+          .max(6,"O pedido deve ter somente 6 caracteres"),
         });
         console.log(schema)
 

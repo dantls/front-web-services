@@ -154,7 +154,7 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
               onClick={onRequestClose}
               to={`/detail/${selectedData?.content}`}
             >
-              <CgMoreVertical />
+              <CgMoreVertical color={'#33CA25'}/>
             </Link>
         </OrderDetails>
         <label htmlFor="modelo">Tipo da alteração </label>
