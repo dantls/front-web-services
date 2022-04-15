@@ -52,7 +52,6 @@ export function NewServiceModal({isOpen,onRequestClose }){
           .min(6, "O pedido deve ter pelo menos 6 caracteres")
           .max(6,"O pedido deve ter somente 6 caracteres"),
         });
-        console.log(schema)
 
         await schema.validate({order}, {
           abortEarly: false,
@@ -145,7 +144,7 @@ export function NewServiceModal({isOpen,onRequestClose }){
           placeholder="Pedido"
           value={order}
           onChange={event => {
-              setOrder(event.target.value)
+              setOrder(event.target.value.toUpperCase())
             }
           }
         />    
