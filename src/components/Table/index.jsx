@@ -2,6 +2,28 @@ import { Container } from './styles';
 
 export function Table({services}){
 
+  function padTo2Digits(num) {
+    return num.toString().padStart(2, '0');
+  }
+  
+  function formatDate(date) {
+    if(!date){
+      return;
+    }
+    return (
+      [
+        padTo2Digits(date.getDate()),
+        padTo2Digits(date.getMonth() + 1),
+        date.getFullYear(),
+      ].join('-') +
+      `\n` +
+      [
+        padTo2Digits(date.getHours()),
+        padTo2Digits(date.getMinutes()),
+        padTo2Digits(date.getSeconds()),
+      ].join(':')
+    );
+  }
 
   const formattedServices = services.map(item => {
 
@@ -10,13 +32,14 @@ export function Table({services}){
     const dateInitial = new Date(item.initial_date);
     const service = {
       ...item,
-      formattedFinal: dateFinal && dateFinal.getHours().toString().padStart(2, '0')
-      +':'+ dateFinal.getMinutes().toString().padStart(2, '0') 
-      +':'+ dateFinal.getSeconds().toString().padStart(2, '0'),
-
-      formattedInitial: dateInitial.getHours().toString().padStart(2, '0')
-      +':'+ dateInitial.getMinutes().toString().padStart(2, '0')
-      +':'+ dateInitial.getSeconds().toString().padStart(2, '0')
+      formattedFinal: formatDate(dateFinal),
+      formattedInitial: formatDate(dateInitial)
+      // formattedFinal: dateFinal && dateFinal.getHours().toString().padStart(2, '0')
+      // +':'+ dateFinal.getMinutes().toString().padStart(2, '0') 
+      // +':'+ dateFinal.getSeconds().toString().padStart(2, '0'),
+      // formattedInitial: dateInitial.getHours().toString().padStart(2, '0')
+      // +':'+ dateInitial.getMinutes().toString().padStart(2, '0')
+      // +':'+ dateInitial.getSeconds().toString().padStart(2, '0')
     }
     return(
       service
