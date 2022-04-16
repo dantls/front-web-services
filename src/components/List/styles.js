@@ -36,7 +36,7 @@ export const Container = styled.div`
   }
 
   header {
-    height: 1.8rem;
+    height: 2.8rem;
 
     h2{
       font-weight: 500;

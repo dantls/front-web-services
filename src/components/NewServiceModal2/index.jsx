@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import {useState, useEffect} from 'react';
+import {useState} from 'react';
 import * as Yup from 'yup';
 import { useToast } from '../../hooks/toast';
 
@@ -10,11 +10,15 @@ import { useHistory } from "react-router-dom";
 import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
+import { useDataNewServiceStore } from '../../services/stores/dataStores2';
+import { useEffect } from 'react/cjs/react.development';
 
 Modal.setAppElement('#root');
 
-export function NewServiceModal({isOpen,onRequestClose }){
-  const {setList} = useServices();
+export function NewServiceModal2({isOpen,onRequestClose }){
+  const { orderData } = useDataNewServiceStore()
+  
+  const { setList } = useServices();
   const { user } = useAuth();
   const { addToast } = useToast();
 
@@ -22,20 +26,9 @@ export function NewServiceModal({isOpen,onRequestClose }){
   const goDashboard = () => history.push('dashboard');
 
   const [order ,setOrder] = useState('');
-  const [addresses ,setAddress] = useState([]);
-  const [choiseAddress ,setChoiseAddress] = useState('');
 
-  useEffect(()=>{
-    async function loadAddresses(){
-      const response = await api.get('/list-addresses');
-      setAddress(response.data);
-    }
-    
-    loadAddresses();
-    setChoiseAddress('');
+  useEffect(()=>{   
     setOrder('');
-    
-
   },[isOpen]);
 
   async function loadServices(){
@@ -57,8 +50,9 @@ export function NewServiceModal({isOpen,onRequestClose }){
           abortEarly: false,
         });
 
+
         await api.post('/services',{
-          "address": choiseAddress,
+          "address": orderData,
           order,
           user: user.id
         });
@@ -111,39 +105,27 @@ export function NewServiceModal({isOpen,onRequestClose }){
       <Container onSubmit={handleCreateNewService}>
         <h2>Cadastrar</h2>
       
+
         <label htmlFor="modelo">Endereço* </label>
-        <select 
-          value={choiseAddress}
-          onChange={event => {
-            setChoiseAddress(event.target.value)
-          }
-          }>
-          <option
-            value=''
-            disabled
-            hidden
-          >
-            Selecione o endereço:
-          </option>
-          {addresses.map((item)=>{
-            return (
-              <option 
-              key={item.id}
-              value={item.description}>
-                {item.description}
-              </option>
-            )
-          })}
-        </select>
+
+        <input 
+          type="text" 
+          id="address" 
+          placeholder="Endereço"
+          disabled
+          value={orderData || ""}
+        />    
+
 
         <label htmlFor="modelo">Pedido* </label>
         
         <input 
           type="text" 
           id="order" 
+          autoFocus 
+          maxLength="6"
           placeholder="Pedido"
           value={order}
-          maxLength="6"
           onChange={event => {
               setOrder(event.target.value.toUpperCase())
             }
