@@ -22,6 +22,9 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
   const [orderTypes, setOrderTypes] = useState([]);
   const [choiceOrderTypes ,setChoiceOrderTypes] = useState('');
 
+   const [addressesFinal, setAddressesFinal] = useState([]);
+   const [choiceAddressFinal ,setChoiceAddressFinal] = useState('');
+
   const [addresses ,setAddress] = useState([]);
   const [choiceAddress ,setChoiceAddress] = useState('');
 
@@ -54,6 +57,18 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
     
     loadAddresses();
     setChoiceAddress('');
+    
+
+  },[isOpen]);
+
+  useEffect(()=>{
+    async function loadAddressesFinal(){
+      const response = await api.get('/list-finaladdresses');
+      setAddressesFinal(response.data);
+    }
+    
+    loadAddressesFinal();
+    setChoiceAddressFinal('');
     
 
   },[isOpen]);
@@ -117,6 +132,16 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
     });
 
     setChoiceOrderTypes('');
+
+    onRequestClose()
+  }
+  async function handleChangeFinalAddress(event){
+    event.preventDefault();
+
+    await api.put('/add-finaladdress',{
+      "order": selectedData.content,
+      "final_address": choiceAddressFinal
+    });
 
     onRequestClose()
   }
@@ -186,7 +211,16 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
             onClick={()=> {setType('change')}}
           > 
             <img src={outcomeImg} alt="Saída"/>
-            <span>Troca Endereço</span>
+            <span>Endereço</span>
+          </RadioBox>
+          <RadioBox
+            isActive={type === 'changeFinal'}
+            type="button"
+            activeColor="blue"
+            onClick={()=> {setType('changeFinal')}}
+          > 
+            <img src={outcomeImg} alt="Saída"/>
+            <span>Destino</span>
           </RadioBox>
         </TransactionTypeContainer>
 
@@ -258,6 +292,39 @@ export function ChangeStatusModal({isOpen,onRequestClose }){
               <button 
                 type="submit" 
                 onClick={handleChangeAddress}
+              >
+                Alterar
+              </button>
+          </>):
+          (type === 'changeFinal')? 
+          (<>
+                <label htmlFor="modelo">Endereço Final* </label>
+                <select 
+                value={choiceAddressFinal}
+                onChange={event => {
+                  setChoiceAddressFinal(event.target.value)
+                }
+                }>
+                <option
+                  value=''
+                  disabled
+                  hidden
+                >
+                  Selecione o endereço:
+                </option>
+                {addressesFinal.map((item)=>{
+                  return (
+                    <option 
+                    key={item.id}
+                    value={item.description}>
+                      {item.description}
+                    </option>
+                  )
+                })}
+              </select>
+              <button 
+                type="submit" 
+                onClick={handleChangeFinalAddress}
               >
                 Alterar
               </button>

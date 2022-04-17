@@ -20,7 +20,7 @@ function Card({data}) {
       </header>
       <p>{data.content}</p>
       <p>{data.order_type}</p>
-      {/* <p>{data.final_address}</p> */}
+      <p>{data.final_address}</p>
     </Container>
   )
 }

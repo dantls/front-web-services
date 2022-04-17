@@ -76,15 +76,16 @@ export const Container = styled.form`
 export const TransactionTypeContainer = styled.div`
   margin: 0.5rem 0;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0.5rem; 
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.2rem; 
 `;
 
 
 const colors = {
   green: '#33CC95',
   red: '#E52E4D',
-  yellow: 'yellow'
+  yellow: 'yellow',
+  blue: 'blue'
 }
 
 export const OrderDetails = styled.div`
@@ -119,7 +120,7 @@ export const RadioBox = styled.button`
   }
   span {
     display: inline-block;
-    margin-left: 1rem;
+    margin-left: 0.2rem;
     font-size: 1rem;
     color: var(--text-title);
   }
