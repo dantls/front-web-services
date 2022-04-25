@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import React,{useState} from 'react';
+import React,{useState, useEffect} from 'react';
 import * as Yup from 'yup';
 import { useToast } from '../../hooks/toast';
 
@@ -11,7 +11,6 @@ import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 import { useDataNewServiceStore } from '../../services/stores/dataStores2';
-import { useEffect } from 'react/cjs/react.development';
 
 Modal.setAppElement('#root');
 
