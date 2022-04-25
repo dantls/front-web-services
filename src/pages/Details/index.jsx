@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react';
+import React, { useState , useEffect} from 'react';
 import {Container, Search, TableContainer, Header} from './styles';
 import { Table } from '../../components/Table';
 import api from '../../services/api';

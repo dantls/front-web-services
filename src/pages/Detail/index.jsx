@@ -1,4 +1,4 @@
-import { useState , useEffect} from 'react';
+import React,{ useState , useEffect} from 'react';
 import {Container} from './styles';
 import { useRouteMatch, Link } from 'react-router-dom';
 import { Table } from '../../components/Table';
