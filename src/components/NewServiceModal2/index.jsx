@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import {useState} from 'react';
+import React,{useState} from 'react';
 import * as Yup from 'yup';
 import { useToast } from '../../hooks/toast';
 

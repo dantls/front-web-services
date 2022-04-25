@@ -1,5 +1,5 @@
 import Modal from 'react-modal';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {Container ,TransactionTypeContainer, RadioBox, OrderDetails} from './styles';
 import { useDataStore } from '../../services/stores/dataStores'
 import closeImg from '../../assets/close.svg';
