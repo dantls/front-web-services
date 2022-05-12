@@ -24,6 +24,12 @@ export const Container = styled.button`
   font-weight: 500;
   line-height: 1rem;
  }
+ span{
+  font-weight: 500;
+  line-height: 1rem;
+  font-size: 0.9rem;
+ }
+
  &:hover{
    filter: brightness(0.9)
  }
