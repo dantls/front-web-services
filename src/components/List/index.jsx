@@ -8,9 +8,8 @@ import { useServices } from '../../hooks/services';
 
 function List({data}) {
   const {list} = useServices();
-  const { setOrderData } = useDataNewServiceStore();
+  const {setOrderData} = useDataNewServiceStore();
   const {handleOpenNewServiceModal2} = useNewServiceModal2();
-
 
   const filteredCards = list.filter(item =>{
      if( item.title === data.description){
@@ -19,6 +18,15 @@ function List({data}) {
      return false 
     }
   )
+
+  const item = list.find(item => {
+    if( item.title === data.description){
+      return item
+    }
+    return false
+  })
+
+  console.log(item)
 
   return (
     <Container>

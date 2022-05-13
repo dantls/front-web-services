@@ -11,9 +11,8 @@ function Board({addresses}) {
       {addresses.map(item => 
         
         <List 
-          key= {item.description}
+          key={item.description}
           data={item}
-
         />
         )
       }
