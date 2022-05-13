@@ -13,7 +13,7 @@ import { useAuth } from '../../hooks/auth';
 
 Modal.setAppElement('#root');
 
-export function NewServiceModal({isOpen,onRequestClose }){
+export function NewServiceModal1({isOpen,onRequestClose }){
   const {setList} = useServices();
   const { user } = useAuth();
   const { addToast } = useToast();

@@ -1,35 +1,35 @@
 import React,{createContext, useState,useContext} from 'react';
 import { useDataNewServiceStore } from '../../services/stores/dataStores2';
 
-const NewServiceModalContext = createContext({});
+const NewServiceModalContext2 = createContext({});
 
-export function NewServiceModalProvider(props) {
+export function NewServiceModalProvider2(props) {
   const { setOrderData } = useDataNewServiceStore();
 
 
-  const [isNewServiceModalOpen2, setIsNewServiceModalOpen] = useState(false);
+  const [isNewServiceModalOpen2, setIsNewServiceModalOpen2] = useState(false);
 
   function handleOpenNewServiceModal2(){
-    setIsNewServiceModalOpen(true);
+    setIsNewServiceModalOpen2(true);
   }
   function handleCloseNewServiceModal2(){
     setOrderData(null)
-    setIsNewServiceModalOpen(false);
+    setIsNewServiceModalOpen2(false);
   }
 
   return (
-    <NewServiceModalContext.Provider value={{
+    <NewServiceModalContext2.Provider value={{
       isNewServiceModalOpen2,
       handleOpenNewServiceModal2,
       handleCloseNewServiceModal2
     }}>
       {props.children}
-    </NewServiceModalContext.Provider>
+    </NewServiceModalContext2.Provider>
   )
 }
 
-export function useNewServiceModal(){
-  const context = useContext(NewServiceModalContext);
+export function useNewServiceModal2(){
+  const context = useContext(NewServiceModalContext2);
 
   return context;
 }

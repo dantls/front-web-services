@@ -1,30 +1,25 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { ChangeStatusModal } from '../../../components/ChangeStatusModal';
 import { Header } from '../../../components/Header';
-import { NewServiceModal } from '../../../components/NewServiceModal';
+import { NewServiceModal1 } from '../../../components/NewServiceModal1';
 import { NewServiceModal2 } from '../../../components/NewServiceModal2';
 import { useChangeStatusModal } from '../../../hooks/changeStatus';
-import { useNewServiceModal } from '../../../hooks/newService';
+import { useNewServiceModal2 } from '../../../hooks/newService2';
+import { useNewServiceModal1 } from '../../../hooks/newService1';
 
 export default function DefaultLayout({ children }) {
-  const [isNewServiceModalOpen, setIsNewServiceModalOpen] = useState(false);
 
   const {isChangeStatusModalOpen,handleCloseChangeStatusModal} = useChangeStatusModal();
-  const {isNewServiceModalOpen2,handleCloseNewServiceModal2} = useNewServiceModal();
+  const {isNewServiceModalOpen1,handleCloseNewServiceModal1, handleOpenNewServiceModal1} = useNewServiceModal1();
+  const {isNewServiceModalOpen2,handleCloseNewServiceModal2} = useNewServiceModal2();
 
-  function handleOpenNewServiceModal(){
-    setIsNewServiceModalOpen(true);
-  }
-  function handleCloseNewServiceModal(){
-    setIsNewServiceModalOpen(false);
-  }
   return (
     <>
-      <Header openModal={handleOpenNewServiceModal}  />
+      <Header openModal={handleOpenNewServiceModal1}  />
 
-      <NewServiceModal 
-        isOpen={isNewServiceModalOpen}
-        onRequestClose={handleCloseNewServiceModal}
+      <NewServiceModal1 
+        isOpen={isNewServiceModalOpen1}
+        onRequestClose={handleCloseNewServiceModal1}
       />
       <NewServiceModal2 
         isOpen={isNewServiceModalOpen2}

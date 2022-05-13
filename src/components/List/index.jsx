@@ -2,14 +2,14 @@ import React from 'react';
 import { Card } from '../Card';
 
 import { Container } from './styles';
-import { useNewServiceModal } from '../../hooks/newService';
+import { useNewServiceModal2 } from '../../hooks/newService2';
 import { useDataNewServiceStore } from '../../services/stores/dataStores2';
 import { useServices } from '../../hooks/services';
 
 function List({data}) {
   const {list} = useServices();
   const { setOrderData } = useDataNewServiceStore();
-  const {handleOpenNewServiceModal2} = useNewServiceModal();
+  const {handleOpenNewServiceModal2} = useNewServiceModal2();
 
 
   const filteredCards = list.filter(item =>{
