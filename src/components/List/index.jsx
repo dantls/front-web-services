@@ -26,7 +26,12 @@ function List({data}) {
     return false
   })
 
-  console.log(item)
+  let total=0 ;
+  
+  if(item){
+    total =  item.total;
+  }
+
 
   return (
     <Container>
@@ -37,7 +42,7 @@ function List({data}) {
           }
         }
       >
-        <h2>{data.description}</h2>
+        <h2>{`${data.description} |(${total})`}</h2>
       </header>
       <ul>     
        {

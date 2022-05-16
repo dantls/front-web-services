@@ -37,11 +37,10 @@ export const Container = styled.div`
 
   header {
     height: 2.8rem;
-
     h2{
       font-weight: 500;
       font-size: 1rem;
-      padding: 0 1rem;
+      padding: 0 0.5rem;
     }
   }
 `;
