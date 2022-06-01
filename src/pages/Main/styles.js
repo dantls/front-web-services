@@ -13,4 +13,8 @@ export const ButtonsContainer = styled.div`
   flex: 1;
   margin-top: 40px;
   justify-content: space-between;
+
+  button {
+    margin-bottom: 0.2rem;
+  }
 `;

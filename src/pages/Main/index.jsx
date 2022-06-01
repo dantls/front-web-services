@@ -14,6 +14,7 @@ const Main = () => {
   const history = useHistory();
   const goDashboard = () => history.push('dashboard');
   const goDetail = () => history.push('details');
+  const goPicking = () => history.push('picking');
 
   return(
     <Container>
@@ -31,6 +32,12 @@ const Main = () => {
         >
           Detalhes
           <BiDetail />
+        </Button>
+        <Button
+          color={'#d4ce82'}
+          onClick={goPicking}
+        >
+          Movimentações
         </Button>
       </ButtonsContainer>
 
