@@ -6,7 +6,6 @@ import {Container} from './styles';
 
 export function Dashboard() {
   const {addresses} = useServices();
-
   return (
     <Container>
       <Board
