@@ -18,7 +18,7 @@ export default function RouterWrapper({
     return <Redirect to="/" />;
   }
   if (!!user && !isPrivate) {
-    return <Redirect to="/dashboard" />;
+    return <Redirect to="/main" />;
   }
 
   const Layout = !!user ? DefaultLayout : AuthLayout;

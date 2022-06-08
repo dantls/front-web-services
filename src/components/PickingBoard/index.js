@@ -3,17 +3,11 @@ import { PickingList } from '../PickingList';
 import { Container } from './styles';
 
 
-function PickingBoard({addresses}) {
+function PickingBoard() {
 
   return (
     <Container>
-    {addresses.map(item => 
-        <PickingList 
-          key={item.description}
-          address={item.description}
-        />
-      )
-    } 
+        <PickingList />
     </Container>
   )
 }

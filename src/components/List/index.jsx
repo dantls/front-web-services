@@ -42,7 +42,7 @@ function List({data}) {
           }
         }
       >
-        <h2>{`${data.description} |(${total})`}</h2>
+        <h2>{data.description === 'Pendências' ?`${data.description} |(${total})` : data.description}</h2>
       </header>
       <ul>     
        {

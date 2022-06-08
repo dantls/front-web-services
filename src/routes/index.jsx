@@ -7,7 +7,8 @@ import {
 import {SignIn} from '../pages/SignIn';
 
 import { Dashboard } from '../pages/Dashboard';
-import { PickingDashboard } from '../pages/PickingDashboard';
+import { PickingsDashboard } from '../pages/PickingsDashboard';
+import { MovementsDashboard } from '../pages/MovementsDashboard';
 import { Detail } from '../pages/Detail';
 import { Details } from '../pages/Details';
 import { Main } from '../pages/Main';
@@ -17,7 +18,8 @@ export default function Routes(){
         <Switch>
             <Route component={SignIn} path="/"exact />
             <Route isPrivate component={Dashboard} path="/dashboard" exact />
-            <Route isPrivate component={PickingDashboard} path="/picking" exact />
+            <Route isPrivate component={PickingsDashboard} path="/pickings" exact />
+            <Route isPrivate component={MovementsDashboard} path="/movements" exact />
             <Route isPrivate component={Main} path="/main" exact />
             <Route isPrivate component={Detail} path="/detail/:order" exact />
             <Route isPrivate component={Details} path="/details" exact />

@@ -2,15 +2,12 @@ import React from 'react';
 import { PickingCard } from '../PickingCard';
 
 import { Container } from './styles';
-import { useMovementsServices } from '../../hooks/movementsService';
+import { usePickingsServices } from '../../hooks/pickingsService';
 
-function PickingList({address}) {
-  const {list} = useMovementsServices();
+function PickingList() {
+  const {list} = usePickingsServices();
   return (
     <Container>
-      <header>
-        <h2>{address.description}</h2>
-      </header>
       <ul>     
         {list?.map(item => (
           <PickingCard data={item}/>

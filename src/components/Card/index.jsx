@@ -1,7 +1,7 @@
 import React from 'react';
 import { useChangeStatusModal } from '../../hooks/changeStatus';
 import { useDataStore } from '../../services/stores/dataStores';
-import { Container, Label } from './styles';
+import { Container } from './styles';
 
 function Card({data}) {
 
@@ -19,15 +19,17 @@ function Card({data}) {
 
 
   return (
-    <Container onClick={
+    <Container  
+    color={data.label}
+    onClick={
       () => {
         setSelectedData(data)
         handleOpenChangeStatusModal()
       }
     } >
-      <header>
+      {/* <header>
         <Label color={data.label} /> 
-      </header>
+      </header> */}
       <p>{data.content}</p>
       <span>{formattedDate(data.order_created)}</span>
       <p>{data.order_type}</p>

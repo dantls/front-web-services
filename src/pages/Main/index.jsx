@@ -14,7 +14,8 @@ const Main = () => {
   const history = useHistory();
   const goDashboard = () => history.push('dashboard');
   const goDetail = () => history.push('details');
-  const goPicking = () => history.push('picking');
+  const goPicking = () => history.push('pickings');
+  const goMovement = () => history.push('movements');
 
   return(
     <Container>
@@ -23,7 +24,7 @@ const Main = () => {
           color={'#1098F7'}
           onClick={goDashboard}
         > 
-          Dashboard
+          Expedição
           <BiCustomize />
         </Button>
         <Button
@@ -35,9 +36,15 @@ const Main = () => {
         </Button>
         <Button
           color={'#d4ce82'}
-          onClick={goPicking}
+          onClick={goMovement}
         >
           Movimentações
+        </Button>
+        <Button
+          color={`rgba(216,34,47,0.8)`}
+          onClick={goPicking}
+        >
+          Separação
         </Button>
       </ButtonsContainer>
 

@@ -3,21 +3,23 @@ import api from '../../services/api';
 
 const TIME_TO_INTERVAL_MS = 1000 * 60;
 
-const MovementsServicesContext = createContext([]);
+const PickingsServicesContext = createContext([]);
 
-export function MovementsServicesProvider({children}){
+export function PickingsServicesProvider({children}){
  
   const [list, setList] = useState([]);
   const [totals, setTotals] = useState([]);
 
   async function fetchAndUpdateData(){
-     const [ responseMovements, responseMovementsResume] = await Promise.all([
-        api.get('/movements'),
-        api.get('/movements-total')
-     ])
 
-     setTotals(responseMovementsResume.data)
-     setList(responseMovements.data)
+
+    const [ responsePickings, responsePickingsResume] = await Promise.all([
+      api.get('/pickings'),
+      api.get('/pickings-total')
+    ])
+
+      setTotals(responsePickingsResume.data)
+      setList(responsePickings.data)
 
 
   }
@@ -45,14 +47,14 @@ export function MovementsServicesProvider({children}){
  
 
   return(
-    <MovementsServicesContext.Provider value={{list, totals, setList}}>
+    <PickingsServicesContext.Provider value={{list, totals, setList}}>
       {children}
-    </MovementsServicesContext.Provider>
+    </PickingsServicesContext.Provider>
   )
 } 
 
-export function useMovementsServices(){
-  const context = useContext(MovementsServicesContext);
+export function usePickingsServices(){
+  const context = useContext(PickingsServicesContext);
   
   return context;
 }

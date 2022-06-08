@@ -9,7 +9,7 @@ export const Container = styled.div`
  margin-right: 0.5rem;
  padding: 0.85rem;
  box-shadow: 0 1px 4px 0 rgba(192,208,230, 0.8);
- border-top: 1rem solid ${(props) => props.color === 1 ? `rgba(216,34,47,0.8)`: `rgba(230,236,245,0.4)`};
+ border-top: 1rem solid rgba(230,236,245,0.4);
  border-right: 0;
  border-bottom: 0;
  border-left: 0;
