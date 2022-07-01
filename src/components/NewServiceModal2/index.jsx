@@ -5,7 +5,8 @@ import { useToast } from '../../hooks/toast';
 
 import {Container} from './styles';
 import {  useServices } from '../../hooks/services';
-import { useHistory } from "react-router-dom";
+import {  useShipment2Services } from '../../hooks/shipment2Service';
+// import { useHistory } from "react-router-dom";
 
 import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
@@ -18,11 +19,12 @@ export function NewServiceModal2({isOpen,onRequestClose }){
   const { orderData } = useDataNewServiceStore()
   
   const { setList } = useServices();
+  const { setList : setList2 } = useShipment2Services();
   const { user } = useAuth();
   const { addToast } = useToast();
 
-  const history = useHistory();
-  const goDashboard = () => history.push('dashboard');
+  // const history = useHistory();
+  // const goDashboard = () => history.goBack();
 
   const [order ,setOrder] = useState('');
 
@@ -33,6 +35,11 @@ export function NewServiceModal2({isOpen,onRequestClose }){
   async function loadServices(){
     const response = await api.get('/list-services');
     setList(response.data);
+  }
+  
+  async function loadServices2(){
+    const response = await api.get('/list-services2');
+    setList2(response.data);
   }
   
   async function handleCreateNewService(event){
@@ -59,9 +66,10 @@ export function NewServiceModal2({isOpen,onRequestClose }){
         
         loadServices();
 
+        loadServices2();
+
         onRequestClose();
 
-        goDashboard();
 
       } catch (error) {
         if (error instanceof Yup.ValidationError) {

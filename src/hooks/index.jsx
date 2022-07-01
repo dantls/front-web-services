@@ -1,9 +1,11 @@
 import React from 'react';
 
 import { ChangeStatusModalProvider } from './changeStatus';
+import { ChangeStatusModalProvider2 } from './changeStatus2';
 import { MovementsServicesProvider } from './movementsService';
 import { PickingsServicesProvider } from './pickingsService';
 import { ServicesProvider } from './services';
+import { Shipment2ServicesProvider } from './shipment2Service';
 import { AuthProvider } from './auth/';
 import { ToastProvider } from './toast/';
 import { NewServiceModalProvider1 } from './newService1/';
@@ -17,9 +19,13 @@ const AppProvider = ({ children }) => (
           <MovementsServicesProvider>
           <PickingsServicesProvider>
               <ServicesProvider>
+                <Shipment2ServicesProvider>
                   <ChangeStatusModalProvider>
-                    {children}
+                    <ChangeStatusModalProvider2>
+                      {children}
+                    </ChangeStatusModalProvider2>
                   </ChangeStatusModalProvider>
+                </Shipment2ServicesProvider>
               </ServicesProvider>
             </PickingsServicesProvider>
             </MovementsServicesProvider>

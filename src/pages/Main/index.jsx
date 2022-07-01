@@ -13,6 +13,7 @@ import Button from '../../components/Button';
 const Main = () => {
   const history = useHistory();
   const goDashboard = () => history.push('dashboard');
+  const goShipment2 = () => history.push('/shipment2');
   const goDetail = () => history.push('details');
   const goPicking = () => history.push('pickings');
   const goMovement = () => history.push('movements');
@@ -28,12 +29,13 @@ const Main = () => {
           <BiCustomize />
         </Button>
         <Button
-          color={'#91C7B1'}
-          onClick={goDetail}
-        >
-          Detalhes
-          <BiDetail />
+          color={'#1098F7'}
+          onClick={goShipment2}
+        > 
+          Expedição2
+          <BiCustomize />
         </Button>
+       
         <Button
           color={'#d4ce82'}
           onClick={goMovement}
@@ -47,6 +49,13 @@ const Main = () => {
           Separação
         </Button>
       </ButtonsContainer>
+       <Button
+          color={'#91C7B1'}
+          onClick={goDetail}
+        >
+          Detalhes
+          <BiDetail />
+        </Button>
 
     
     </Container>
