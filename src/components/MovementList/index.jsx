@@ -5,12 +5,11 @@ import { Container } from './styles';
 import { useMovementsServices } from '../../hooks/movementsService';
 
 function MovementList() {
-  const {list} = useMovementsServices();
-  
+  const {listMovements} = useMovementsServices();
   return (
     <Container>
       <ul>     
-        {list?.map(item => (
+        {listMovements?.map(item => (
           <MovementCard data={item}/>
         ))}
       </ul>

@@ -11,14 +11,16 @@ export function PickingsDashboard() {
     <Container>
        <header>
           <h4>{`PEDIDOS: ${list.length}`}</h4>
+          <div>
+          <h4>SERVIÇOS:</h4>  
           {
             totals.map(item => (
               <h4>{`${item.SITUACAO} :  ${item.QUANTIDADE}`}</h4>
             ))
           }
+          </div>
         </header>
-        <PickingBoard 
-        />
+        <PickingBoard />
 
     </Container>
   );

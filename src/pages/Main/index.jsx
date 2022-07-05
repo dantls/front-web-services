@@ -14,9 +14,9 @@ const Main = () => {
   const history = useHistory();
   const goDashboard = () => history.push('dashboard');
   const goShipment2 = () => history.push('/shipment2');
-  const goDetail = () => history.push('details');
-  const goPicking = () => history.push('pickings');
-  const goMovement = () => history.push('movements');
+  const goDetail = () => history.push('/details');
+  const goPicking = () => history.push('/pickings');
+  const goMovement = () => history.push('/movements');
 
   return(
     <Container>

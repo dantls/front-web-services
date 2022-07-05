@@ -7,8 +7,8 @@ const MovementsServicesContext = createContext([]);
 
 export function MovementsServicesProvider({children}){
  
-  const [list, setList] = useState([]);
-  const [totals, setTotals] = useState([]);
+  const [listMovements, setListMovements] = useState([]);
+  const [totalsMovements, setTotalsMovements] = useState([]);
 
   async function fetchAndUpdateData(){
      const [ responseMovements, responseMovementsResume] = await Promise.all([
@@ -16,8 +16,8 @@ export function MovementsServicesProvider({children}){
         api.get('/movements-total')
      ])
 
-     setTotals(responseMovementsResume.data)
-     setList(responseMovements.data)
+     setTotalsMovements(responseMovementsResume.data)
+     setListMovements(responseMovements.data)
 
 
   }
@@ -45,7 +45,7 @@ export function MovementsServicesProvider({children}){
  
 
   return(
-    <MovementsServicesContext.Provider value={{list, totals, setList}}>
+    <MovementsServicesContext.Provider value={{listMovements, totalsMovements, setListMovements}}>
       {children}
     </MovementsServicesContext.Provider>
   )

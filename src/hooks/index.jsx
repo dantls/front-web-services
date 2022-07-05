@@ -17,17 +17,17 @@ const AppProvider = ({ children }) => (
       <NewServiceModalProvider2>
         <NewServiceModalProvider1>
           <MovementsServicesProvider>
-          <PickingsServicesProvider>
-              <ServicesProvider>
-                <Shipment2ServicesProvider>
-                  <ChangeStatusModalProvider>
-                    <ChangeStatusModalProvider2>
-                      {children}
-                    </ChangeStatusModalProvider2>
-                  </ChangeStatusModalProvider>
-                </Shipment2ServicesProvider>
-              </ServicesProvider>
-            </PickingsServicesProvider>
+            <PickingsServicesProvider>
+                <ServicesProvider>
+                  <Shipment2ServicesProvider>
+                    <ChangeStatusModalProvider>
+                      <ChangeStatusModalProvider2>
+                        {children}
+                      </ChangeStatusModalProvider2>
+                    </ChangeStatusModalProvider>
+                  </Shipment2ServicesProvider>
+                </ServicesProvider>
+              </PickingsServicesProvider>
             </MovementsServicesProvider>
           </NewServiceModalProvider1>
       </NewServiceModalProvider2>
