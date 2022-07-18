@@ -2,6 +2,8 @@ import Modal from 'react-modal';
 import React,{useState, useEffect} from 'react';
 import * as Yup from 'yup';
 import { useToast } from '../../hooks/toast';
+import { useBarcodeModal } from '../../hooks/barcode';
+import { BiBarcodeReader } from 'react-icons/bi';
 
 import {Container} from './styles';
 import {  useServices } from '../../hooks/services';
@@ -12,11 +14,14 @@ import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 import { useDataNewServiceStore } from '../../services/stores/dataStores2';
+import { useDataStoreBarcode } from '../../services/stores/dataStoresBarcode';
 
 Modal.setAppElement('#root');
 
 export function NewServiceModal2({isOpen,onRequestClose }){
   const { orderData } = useDataNewServiceStore()
+  const { barcodeData } = useDataStoreBarcode()
+  const { handleOpenBarcodeModal } = useBarcodeModal();
   
   const { setList } = useServices();
   const { setList : setList2 } = useShipment2Services();
@@ -31,6 +36,8 @@ export function NewServiceModal2({isOpen,onRequestClose }){
   useEffect(()=>{   
     setOrder('');
   },[isOpen]);
+
+  console.log(barcodeData);
 
   async function loadServices(){
     const response = await api.get('/list-services');
@@ -138,7 +145,13 @@ export function NewServiceModal2({isOpen,onRequestClose }){
             }
           }
         />    
-
+        <button 
+          type="button"
+          onClick={()=>handleOpenBarcodeModal()}
+        >
+          <BiBarcodeReader size={40}/>
+        </button>
+        
 
         <button type="submit">
           Cadastrar
