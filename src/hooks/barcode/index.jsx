@@ -4,6 +4,7 @@ const BarcodeModalContext = createContext({});
 
 export function BarcodeModalProvider(props) {
   const [isBarcodeModalOpen, setIsBarcodeModalOpen] = useState(false);
+  const [barcode, setBarcode] = useState(false);
 
   function handleOpenBarcodeModal(){
     setIsBarcodeModalOpen(true);
@@ -16,7 +17,9 @@ export function BarcodeModalProvider(props) {
     <BarcodeModalContext.Provider value={{
       isBarcodeModalOpen,
       handleOpenBarcodeModal,
-      handleCloseBarcodeModal
+      handleCloseBarcodeModal,
+      setBarcode,
+      barcode
     }}>
       {props.children}
     </BarcodeModalContext.Provider>

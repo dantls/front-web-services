@@ -14,16 +14,14 @@ import closeImg from '../../assets/close.svg';
 import api from '../../services/api';
 import { useAuth } from '../../hooks/auth';
 import { useDataNewServiceStore } from '../../services/stores/dataStores2';
-import { useDataStoreBarcode } from '../../services/stores/dataStoresBarcode';
+
 
 Modal.setAppElement('#root');
 
 export function NewServiceModal2({isOpen,onRequestClose }){
   const { orderData } = useDataNewServiceStore()
-  const { barcodeData } = useDataStoreBarcode()
-  const { handleOpenBarcodeModal } = useBarcodeModal();
-  
-  const { setList } = useServices();
+  const { handleOpenBarcodeModal, barcode } = useBarcodeModal();
+   const { setList } = useServices();
   const { setList : setList2 } = useShipment2Services();
   const { user } = useAuth();
   const { addToast } = useToast();
@@ -33,12 +31,25 @@ export function NewServiceModal2({isOpen,onRequestClose }){
 
   const [order ,setOrder] = useState('');
 
-  useEffect(()=>{   
+   useEffect(()=>{   
     setOrder('');
   },[isOpen]);
 
-  console.log(barcodeData);
+   useEffect(()=>{   
+    async function loadOrderByBarcode(){
+      setOrder('');
 
+      const response = await api.get(`/checkOrder?UMA=${barcode}`);
+
+      if(response.data || response.data.lenght !== 0 ){
+        setOrder(response?.data[0]?.PEDIDO);
+        return
+      }
+    }
+    
+    loadOrderByBarcode()
+  },[barcode, handleOpenBarcodeModal]);
+  
   async function loadServices(){
     const response = await api.get('/list-services');
     setList(response.data);

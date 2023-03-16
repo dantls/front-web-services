@@ -4,7 +4,9 @@ import { ChangeStatusModalProvider } from './changeStatus';
 import { ChangeStatusModalProvider2 } from './changeStatus2';
 import { BarcodeModalProvider } from './barcode';
 import { MovementsServicesProvider } from './movementsService';
+import { MovementsForecastServicesProvider } from './movementsForecastService';
 import { PickingsServicesProvider } from './pickingsService';
+import { SamplesServicesProvider } from './samplesService';
 import { ServicesProvider } from './services';
 import { Shipment2ServicesProvider } from './shipment2Service';
 import { AuthProvider } from './auth/';
@@ -18,19 +20,23 @@ const AppProvider = ({ children }) => (
       <BarcodeModalProvider>
         <NewServiceModalProvider2>
           <NewServiceModalProvider1>
-            <MovementsServicesProvider>
-              <PickingsServicesProvider>
-                  <ServicesProvider>
-                    <Shipment2ServicesProvider>
-                      <ChangeStatusModalProvider>
-                        <ChangeStatusModalProvider2>
-                          {children}
-                        </ChangeStatusModalProvider2>
-                      </ChangeStatusModalProvider>
-                    </Shipment2ServicesProvider>
-                  </ServicesProvider>
-                </PickingsServicesProvider>
-              </MovementsServicesProvider>
+            <MovementsForecastServicesProvider>
+              <MovementsServicesProvider>
+                <PickingsServicesProvider>
+                  <SamplesServicesProvider>
+                    <ServicesProvider>
+                      <Shipment2ServicesProvider>
+                        <ChangeStatusModalProvider>
+                          <ChangeStatusModalProvider2>
+                            {children}
+                          </ChangeStatusModalProvider2>
+                        </ChangeStatusModalProvider>
+                      </Shipment2ServicesProvider>
+                    </ServicesProvider>
+                  </SamplesServicesProvider>
+                  </PickingsServicesProvider>
+                </MovementsServicesProvider>
+              </MovementsForecastServicesProvider>
             </NewServiceModalProvider1>
         </NewServiceModalProvider2>
       </BarcodeModalProvider>

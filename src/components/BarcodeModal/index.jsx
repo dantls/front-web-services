@@ -1,31 +1,36 @@
 import Modal from 'react-modal';
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState
+  // ,useRef 
+} from 'react';
 import {Container} from './styles';
-import { useDataStoreBarcode } from '../../services/stores/dataStoresBarcode';
+// import { useDataStoreBarcode } from '../../services/stores/dataStoresBarcode';
 import closeImg from '../../assets/close.svg';
 import {
-  BrowserMultiFormatReader,
   NotFoundException,
   ChecksumException,
-  FormatException
+  FormatException,
+  BrowserMultiFormatReader
 } from "@zxing/library";
+
+
+import { useBarcodeModal } from '../../hooks/barcode';
+import Button from '../Button';
 
 Modal.setAppElement('#root');
 export function BarcodeModal({isOpen,onRequestClose }){
 
-  const { setBarcodeData } = useDataStoreBarcode();
-  const myContainer = useRef(null);
+  // const { setBarcodeData } = useDataStoreBarcode();
+  // const myContainer = useRef(null);
   const [selectedDeviceId, setSelectedDeviceId] = useState("");
   const [startVideo, setStartVideo] = useState(false);
-  const [code, setCode] = useState("");
+  const { setBarcode } = useBarcodeModal();
 
   
-  const [videoInputDevices, setVideoInputDevices] = useState([]);
+  // const [videoInputDevices, setVideoInputDevices] = useState([]);
 
   const codeReader = new BrowserMultiFormatReader();
 
   console.log("ZXing code reader initialized");
-  console.log(startVideo);
 
   useEffect(() => {
     codeReader
@@ -36,24 +41,25 @@ export function BarcodeModal({isOpen,onRequestClose }){
       .catch(err => {
         console.error(err);
       });
-  }, [startVideo]);
+  }, []);
 
   function setupDevices(videoInputDevices) {
     
     // selects first device
-    // setSelectedDeviceId(videoInputDevices[0].deviceId);
+     setSelectedDeviceId(videoInputDevices[1].deviceId);
 
     // setup devices dropdown
-    if (videoInputDevices.length >= 1) {
-      setVideoInputDevices(videoInputDevices)
-    }
+    // if (videoInputDevices.length >= 1) {
+    //   setVideoInputDevices(videoInputDevices)
+    // }
   }
 
-  function resetClick() {
-    codeReader.reset();
-    setCode("");
-    console.log("Reset.");
-  }
+  // function resetClick() {
+  //   codeReader.reset();
+  //   // setCode("");
+  //   setBarcode("");
+  //   console.log("Reset.");
+  // }
 
   function decodeContinuously(selectedDeviceId) {
     codeReader.decodeFromVideoDevice(
@@ -63,14 +69,15 @@ export function BarcodeModal({isOpen,onRequestClose }){
         if (result) {
           // properly decoded qr code
           console.log("Found code!", result);
-          setBarcodeData(result.text);
-          resetClick();
+          setBarcode(result.text);
+          setStartVideo(false)
+          codeReader.reset();
           onRequestClose();
 
         }
 
         if (err) {
-          setCode("");
+          // setCode("");
 
           // As long as this error belongs into one of the following categories
           // the code reader is going to continue as excepted. Any other error
@@ -130,7 +137,7 @@ export function BarcodeModal({isOpen,onRequestClose }){
       </button>
       <Container >
         {/* <main class="wrapper"> */}
-            <div id="sourceSelectPanel">
+            {/* <div id="sourceSelectPanel">
               <label for="sourceSelect">Change video source:</label>
               <select
                 ref={myContainer}
@@ -143,23 +150,23 @@ export function BarcodeModal({isOpen,onRequestClose }){
                   )) 
                 }
               </select>
-            </div>
+            </div> */}
 
             <div>
               <video id="video" width="300" height="300" />
             </div>
 
-            <label>Result:</label>
-            <pre>
+            {/* <label>Result:</label> */}
+            {/* <pre>
               <code id="result">{code}</code>
-            </pre>
+            </pre> */}
 
-            <button id="resetButton" onClick={() => resetClick()}>
+            {/* <button id="resetButton" onClick={() => resetClick()}>
               Reset
-            </button>
-            <button onClick={() => setStartVideo(true)}>
-              start
-            </button>
+            </button> */}
+            <Button onClick={() => setStartVideo(true)}>
+              Iniciar
+            </Button>
         {/* </main> */}
       </Container>
     </Modal>

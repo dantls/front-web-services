@@ -4,7 +4,7 @@ import { useServices } from '../../hooks/services';
 import {Container} from './styles';
 
 
-export function Dashboard() {
+export function Shipment1Dashboard() {
   const {addresses} = useServices();
   return (
     <Container>
